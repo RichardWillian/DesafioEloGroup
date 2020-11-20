@@ -1,17 +1,5 @@
 <template>
-  <FromCreateAccount />
+  <div id="app">
+    <router-view />
+  </div>
 </template>
-
-<script>
-import FromCreateAccount from "./components/PainelLeads/PainelLeads";
-
-export default {
-  name: "App",
-  components: {
-    FromCreateAccount,
-  },
-};
-</script>
-
-<style>
-</style>
