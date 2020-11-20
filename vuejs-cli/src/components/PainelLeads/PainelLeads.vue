@@ -10,29 +10,30 @@
           >
             <thead class="thead-dark">
               <tr>
-                <th>Cliente em Potencial</th>
-                <th>Dados Confirmados</th>
-                <th>Reunião Agendada</th>
+                <th value="1">Cliente em Potencial</th>
+                <th value="2">Dados Confirmados</th>
+                <th value="3">Reunião Agendada</th>
               </tr>
             </thead>
             <tbody>
-              <tr id="1" class="sortable">
-                <td id="11" class="card">Org. Internacionais</td>
-                <td id="12"></td>
-                <td id="13"></td>
+              <tr class="sortable">
+                <td class="card">Org. Internacionais</td>
+                <td ></td>
+                <td ></td>
               </tr>
-              <tr id="2" class="sortable">
-                <td id="21"></td>
-                <td id="22" class="card">Ind. Farm. LTDA</td>
-                <td id="23"></td>
+              <tr class="sortable">
+                <td></td>
+                <td class="card">Ind. Farm. LTDA</td>
+                <td></td>
               </tr>
-              <tr id="3" class="sortable">
-                <td id="31" class="card">Musc. Sound Live Cmp</td>
-                <td id="32"></td>
-                <td id="33"></td>
+              <tr class="sortable">
+                <td class="card">Musc. Sound Live Cmp</td>
+                <td></td>
+                <td></td>
               </tr>
             </tbody>
           </table>
+          <button id="btnNovoLead" v-on:click="adicionarNovoLead()">Novo Lead (+)</button>
         </div>
       </div>
     </section>
@@ -44,34 +45,33 @@ require("jquery-ui-bundle");
 
 export default {
   methods: {
-    // criarDraggable(element) {
-    //   var $tdClicada = $(element).parent();
-    //   var idtd = $tdClicada.attr("id");
-    //   if (idtd) {
-    //     var idPrefix = idtd.split("_")[0];
-    //     var numeroProximaCelula = parseInt(idtd.split("_")[1]) + 1;
+    adicionarNovoLead() {
 
-    //     $("#" + idPrefix + "_" + numeroProximaCelula).droppable({
-    //       classes: {
-    //         "ui-droppable-active": "ui-state-active border-danger",
-    //         "ui-droppable-hover": "ui-state-hover border-alert",
-    //       },
-    //     });
-    //   }
-    // },
+      $("#tabellaSos tr:last").after(
+        '<tr id="4" class="sortable"><td id="41" class="card">Novo Elemento Adicionado</td><td id="42"></td> <td id="43"></td></tr>'
+      );
+
+      carregarSortables();
+    },
   },
   mounted() {
     $(function () {
-      $(".sortable").sortable({
-        cursor: "move",
-        cancel: "td:not(.card)",
-        update: function (event, ui) {
-          return ui.originalPosition.left < ui.position.left;
-        },
-      }).disableSelection();
+      carregarSortables();
     });
   },
 };
+
+function carregarSortables() {
+      $(".sortable")
+        .sortable({
+          cursor: "move",
+          cancel: "td:not(.card)",
+          update: function (event, ui) {
+            return ui.originalPosition.left < ui.position.left;
+          },
+        })
+        .disableSelection();
+    }
 </script>
 
 <style scoped>
