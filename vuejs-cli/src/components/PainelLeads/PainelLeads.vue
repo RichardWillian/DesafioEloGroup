@@ -18,13 +18,13 @@
             <tbody>
               <tr id="1" class="sortable">
                 <td id="11" class="card">Org. Internacionais</td>
-                <td id="12" class="connectedSortable"></td>
-                <td id="13" class="connectedSortable"></td>
+                <td id="12"></td>
+                <td id="13"></td>
               </tr>
               <tr id="2" class="sortable">
-                <td id="21" class="connectedSortable"></td>
+                <td id="21"></td>
                 <td id="22" class="card">Ind. Farm. LTDA</td>
-                <td id="23" class="connectedSortable"></td>
+                <td id="23"></td>
               </tr>
               <tr id="3" class="sortable">
                 <td id="31" class="card">Musc. Sound Live Cmp</td>
@@ -44,32 +44,31 @@ require("jquery-ui-bundle");
 
 export default {
   methods: {
-    criarDraggable(element) {
-      var $tdClicada = $(element).parent();
-      var idtd = $tdClicada.attr("id");
-      if (idtd) {
-        var idPrefix = idtd.split("_")[0];
-        var numeroProximaCelula = parseInt(idtd.split("_")[1]) + 1;
+    // criarDraggable(element) {
+    //   var $tdClicada = $(element).parent();
+    //   var idtd = $tdClicada.attr("id");
+    //   if (idtd) {
+    //     var idPrefix = idtd.split("_")[0];
+    //     var numeroProximaCelula = parseInt(idtd.split("_")[1]) + 1;
 
-        $("#" + idPrefix + "_" + numeroProximaCelula).droppable({
-          classes: {
-            "ui-droppable-active": "ui-state-active border-danger",
-            "ui-droppable-hover": "ui-state-hover border-alert",
-          },
-        });
-      }
-    },
+    //     $("#" + idPrefix + "_" + numeroProximaCelula).droppable({
+    //       classes: {
+    //         "ui-droppable-active": "ui-state-active border-danger",
+    //         "ui-droppable-hover": "ui-state-hover border-alert",
+    //       },
+    //     });
+    //   }
+    // },
   },
   mounted() {
     $(function () {
       $(".sortable").sortable({
         cursor: "move",
-        forceHelperSize: true,
-        scroll: false,
+        cancel: "td:not(.card)",
         update: function (event, ui) {
           return ui.originalPosition.left < ui.position.left;
         },
-      });
+      }).disableSelection();
     });
   },
 };
@@ -90,7 +89,6 @@ input[type="button"] {
 }
 .container {
   width: 20%;
-  float: left;
   clear: right;
   margin: 10px;
   border-radius: 5px;
@@ -101,17 +99,6 @@ input[type="button"] {
   padding: 2px;
   min-height: 30px;
   border-radius: 5px;
-}
-.sortable li {
-  margin: 3px 3px 3px 3px;
-  padding: 0.4em;
-  padding-left: 1.5em;
-  font-size: 1.4em;
-  height: 18px;
-}
-.sortable li span {
-  position: absolute;
-  margin-left: -1.3em;
 }
 
 .card {
