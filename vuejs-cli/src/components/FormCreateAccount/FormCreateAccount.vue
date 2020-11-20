@@ -2,7 +2,7 @@
   <div class="container" id="formulario">
     <div class="row justify-content-md-center">
       <div class="border border-dark rounded col-lg-6">
-        <form v-on:submit.prevent="addUser">
+        <form v-on:submit.prevent="salvarUsuario">
           <LogoEloGroup />
           <div class="form-group col-lg-12">
             <label for="usuario" id="labelUsuario">Usuário *</label>
@@ -32,6 +32,7 @@ import LogoEloGroup from "../LogoEloGroup";
 import InputPassword from "./components/InputPassword";
 import InputConfirmPassword from "./components/InputConfirmPassword";
 import Utils from "../../utils/Utils";
+import UsuarioService from '../../services/usuarios'
 import $ from "jquery";
 
 export default {
@@ -41,7 +42,7 @@ export default {
     InputConfirmPassword,
   },
   methods: {
-    addUser() {
+    salvarUsuario() {
       var usarioIsEmpty = $("#usuario").val() == "";
       var passwordIsEmpty = $("#password").val() == "";
       var confirmarPasswordIsEmpty = $("#confirmarPassword").val() == "";
@@ -49,7 +50,12 @@ export default {
       var formValido = !usarioIsEmpty && !passwordIsEmpty && !confirmarPasswordIsEmpty && Utils.methods.isPasswordValid();
 
       if (formValido) {
-        console.log("Formulário Válido");
+        var usuario = {
+          'nome': $("#usuario").val(),
+          'password': $("#password").val()
+        }
+
+        UsuarioService.salvarUsuario(usuario);
         return;
       }
 
