@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import FromCreateAccount from "./components/FormCreateAccount/FormCreateAccount.vue";
+import FromCreateAccount from "./components/PainelLeads/PainelLeads";
 
 export default {
   name: "App",
