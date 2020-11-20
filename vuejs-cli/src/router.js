@@ -7,14 +7,16 @@ import FormCreateAccount from "../src/components/FormCreateAccount/FormCreateAcc
 Vue.use(Router)
 
 const routes = [{
-    name: "home",
-    path: "/",
-    component: Home
-}, {
-    name: "formularioCriacaoConta",
-    path: "/formularioCriacaoConta",
-    component: FormCreateAccount
-}]
+        name: "home",
+        path: "/",
+        component: Home
+    },
+    {
+        name: "formularioCriacaoConta",
+        path: "/formularioCriacaoConta",
+        component: FormCreateAccount
+    }
+]
 
 const router = new Router({ routes });
 

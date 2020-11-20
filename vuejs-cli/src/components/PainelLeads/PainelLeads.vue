@@ -18,8 +18,8 @@
             <tbody>
               <tr class="sortable">
                 <td class="card">Org. Internacionais</td>
-                <td ></td>
-                <td ></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr class="sortable">
                 <td></td>
@@ -33,7 +33,16 @@
               </tr>
             </tbody>
           </table>
-          <button id="btnNovoLead" v-on:click="adicionarNovoLead()">Novo Lead (+)</button>
+          <ModalFormularioCriacaoLead />
+          <button
+            type="button"
+            v-on:click="adicionarNovoLead()"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#exampleModal"
+          >
+            Novo Lead (+)
+          </button>
         </div>
       </div>
     </section>
@@ -41,12 +50,15 @@
 </template>
 <script>
 import $ from "jquery";
+import ModalFormularioCriacaoLead from "../FormCreateAccount/ModalFormularioCriacaoLead";
 require("jquery-ui-bundle");
 
 export default {
+  components: {
+    ModalFormularioCriacaoLead
+  },
   methods: {
     adicionarNovoLead() {
-
       $("#tabellaSos tr:last").after(
         '<tr id="4" class="sortable"><td id="41" class="card">Novo Elemento Adicionado</td><td id="42"></td> <td id="43"></td></tr>'
       );
@@ -62,16 +74,16 @@ export default {
 };
 
 function carregarSortables() {
-      $(".sortable")
-        .sortable({
-          cursor: "move",
-          cancel: "td:not(.card)",
-          update: function (event, ui) {
-            return ui.originalPosition.left < ui.position.left;
-          },
-        })
-        .disableSelection();
-    }
+  $(".sortable")
+    .sortable({
+      cursor: "move",
+      cancel: "td:not(.card)",
+      update: function (event, ui) {
+        return ui.originalPosition.left < ui.position.left;
+      },
+    })
+    .disableSelection();
+}
 </script>
 
 <style scoped>
