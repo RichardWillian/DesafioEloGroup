@@ -8,7 +8,6 @@ var bdUsuarios = []
 // Fiz esse 'for' para simular uma primeira consulta ao banco de dados
 // Caso houvesse uma API, não seria necessário
 for (var i = 1; i <= 6; i++) {
-    console.log(i)
     bdUsuarios.push({
         id: i,
         nome: 'Item' + i,
