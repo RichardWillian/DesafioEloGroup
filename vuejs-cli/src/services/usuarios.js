@@ -1,79 +1,38 @@
+// Estou comentando esse 'http' para não dar erro de 'variável não utilizada'
+// Mas caso houvesse uma API seria utilizada
+
 // import { http } from './config'
 
-var bdUsuarios = [{
-        id: 1,
-        nome: 'Org. Internacionais',
-        password: "El@Gr0oup1",
-        status: 0
-    },
-    {
-        id: 2,
-        nome: 'Ind. Farm. LTDA',
-        password: "El@Gr0oup2",
-        status: 1
-    },
-    {
-        id: 3,
-        nome: 'Musc. Sound Live Cmp',
-        password: "El@Gr0oup3",
-        status: 0
-    },
-    {
-        id: 4,
-        nome: 'Org. Internacionais',
-        password: "El@Gr0oup1",
-        status: 0
-    },
-    {
-        id: 5,
-        nome: 'Ind. Farm. LTDA',
-        password: "El@Gr0oup2",
-        status: 1
-    },
-    {
-        id: 6,
-        nome: 'Musc. Sound Live Cmp',
-        password: "El@Gr0oup3",
-        status: 0
-    },
-    {
-        id: 7,
-        nome: 'Org. Internacionais',
-        password: "El@Gr0oup1",
-        status: 0
-    },
-    {
-        id: 8,
-        nome: 'Ind. Farm. LTDA',
-        password: "El@Gr0oup2",
-        status: 1
-    },
-    {
-        id: 9,
-        nome: 'Musc. Sound Live Cmp',
-        password: "El@Gr0oup3",
-        status: 0
-    },
-    {
-        id: 10,
-        nome: 'Musc. Sound Live Cmp',
-        password: "El@Gr0oup3",
-        status: 0
-    },
-]
+var bdUsuarios = []
+
+// Fiz esse 'for' para simular uma primeira consulta ao banco de dados
+// Caso houvesse uma API, não seria necessário
+for (var i = 1; i <= 6; i++) {
+    console.log(i)
+    bdUsuarios.push({
+        id: i,
+        nome: 'Item' + i,
+        password: "El@Gr0oup" + i,
+        status: Math.floor(Math.random() * (3))
+    })
+}
 
 export default {
+    // Como não há o backend, estou criando esse array
+    // Temporário para simular as consultas na API
+
     salvarUsuario: (usuario) => {
         // http.post('salvarUsuario', usuario).then(response => {
         //     //Salvar Usuários (Leads)
         // });
+
         bdUsuarios.push(usuario);
     },
     recuperarUsuarios: () => {
         // http.get('recuperarUsuarios').then(response => {
         //     //Retornar Usuários (Leads) da API
-
         // });
+
         return bdUsuarios;
     },
     atualizarUsuario: () => {
