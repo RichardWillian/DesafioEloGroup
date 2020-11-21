@@ -55,7 +55,6 @@ export default {
         $(".sortable")
           .sortable({
             cursor: "move",
-            scroll: false,
             cancel: "td:not(.card)",
             update: function (event, ui) {
               if (ui.originalPosition.left > ui.position.left) {
@@ -74,7 +73,7 @@ export default {
 
               if (status - usuario.status != 1) {
                 Alert.methods.exibir(
-                  "Só é permitido alterar um status por vez."
+                  "Só é permitido avançar um status por vez."
                 );
                 return false;
               }
