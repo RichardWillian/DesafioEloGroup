@@ -3,12 +3,18 @@
     <div class="row justify-content-md-center">
       <div>
         <div class="col table-responsive">
+          <div class="row justify-content-md-center">
+            <logo-elo-group class="col-lg-12"/>
+          </div>
           <div class="col-xs-12">
             <Alert />
           </div>
           <div class="row mt-2">
-            <div class="col-xs-1">
+            <div class="col">
               <BotaoAdicionarLead />
+            </div>
+            <div class="offset-md-1 col-md-7">
+              <h2>Painel de Leads</h2>
             </div>
           </div>
           <div class="row mt-3 mb-5">
@@ -25,6 +31,7 @@ import Alert from "../Alert";
 import TableLeads from "./components/TableLeads";
 import BotaoAdicionarLead from "./components/BotaoAdicionarLead";
 import ModalFormularioCriacaoLead from "../FormCreateAccount/ModalFormularioCriacaoLead";
+import LogoEloGroup from '../LogoEloGroup.vue';
 
 export default {
   components: {
@@ -32,6 +39,7 @@ export default {
     TableLeads,
     BotaoAdicionarLead,
     ModalFormularioCriacaoLead,
+    LogoEloGroup,
   },
 };
 </script>

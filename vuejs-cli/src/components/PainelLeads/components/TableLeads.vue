@@ -118,7 +118,7 @@ tbody {
   display: block;
   overflow-y: auto;
   table-layout: fixed;
-  max-height: 420px;
+  max-height: 320px;
   max-width: 600px;
 }
 

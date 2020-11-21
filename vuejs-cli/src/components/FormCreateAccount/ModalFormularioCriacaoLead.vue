@@ -10,7 +10,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalFormularioLabel">Inserir Lead</h5>
+          <h1 class="modal-title" id="modalFormularioLabel">Inserir Lead</h1>
           <button
             type="button"
             class="close"

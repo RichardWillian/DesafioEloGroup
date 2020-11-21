@@ -23,7 +23,6 @@ export default {
   },
   methods: {
     exibir: function (mensagem) {
-      console.log(vm.mensagemAlerta);
       vm.mensagemAlerta = mensagem;
       $(".alert").show();
     },
