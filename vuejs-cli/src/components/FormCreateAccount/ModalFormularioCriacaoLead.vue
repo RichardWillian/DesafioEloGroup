@@ -29,7 +29,10 @@
 </template>
 
 <script>
+import InputUsuario from "./components/InputUsuario";
+import InputPassword from "./components/InputPassword";
 import FormularioCriacaoLead from "./FormCreateAccount";
+import InputConfirmPassword from "./components/InputConfirmPassword";
 
 export default {
   components: {
@@ -37,6 +40,9 @@ export default {
   },
   methods: {
     fecharModal(){
+      InputUsuario.methods.limparCampos();
+      InputPassword.methods.limparCampos();
+      InputConfirmPassword.methods.limparCampos();
       window.$('#modalFormulario').modal("toggle");
     }
   },

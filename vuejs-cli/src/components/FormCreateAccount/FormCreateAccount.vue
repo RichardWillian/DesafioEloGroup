@@ -71,7 +71,7 @@ export default {
 
       if (confirmarPasswordIsEmpty)
         InputConfirmPassword.methods.adicionarDetalhesErro(
-          parteMensagem + "'confirmar password'"
+          parteMensagem + " 'confirmar password'"
         );
     },
     limparCampos() {

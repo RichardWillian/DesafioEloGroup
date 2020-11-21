@@ -34,7 +34,7 @@ export default {
     limparCampos() {
       var $confirmarPassword = $("#confirmarPassword");
       var $labelConfirmarPassword = $("#labelConfirmarPassword");
-      var $mensagemErroConfirmarPassword = $("#mensagemErroPassword");
+      var $mensagemErroConfirmarPassword = $("#mensagemErroConfirmarPassword");
 
       $confirmarPassword.val("");
       Utils.methods.removeDetailsError(
@@ -51,7 +51,7 @@ export default {
     adicionarDetalhesErro(mensagem) {
       var $confirmarPassword = $("#confirmarPassword");
       var $labelConfirmarPassword = $("#labelConfirmarPassword");
-      var $mensagemErroConfirmarPassword = $("#mensagemErroPassword");
+      var $mensagemErroConfirmarPassword = $("#mensagemErroConfirmarPassword");
 
       Utils.methods.addDetailsError(
         mensagem,
