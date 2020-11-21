@@ -37,6 +37,7 @@
 <script>
 import $ from "jquery";
 require("jquery-ui-bundle");
+import Alert from "../../Alert";
 import UsuarioService from "@/services/usuarios";
 
 export default {
@@ -56,8 +57,10 @@ export default {
             cursor: "move",
             cancel: "td:not(.card)",
             update: function (event, ui) {
-
-              if (ui.originalPosition.left > ui.position.left) return false;
+              if (ui.originalPosition.left > ui.position.left) {
+                Alert.methods.exibir("Não é permitido retornar um status.")
+                return false;
+              }
 
               var $tdMovida = $(ui.item);
               var idLead = $tdMovida.attr("id").split("_")[1];
@@ -67,8 +70,13 @@ export default {
                 return lead.id == idLead;
               });
               var usuario = arrayLeads.shift();
-              if(status - usuario.status != 1)
+
+              if (status - usuario.status != 1) {
+                Alert.methods.exibir(
+                  "Só é permitido alterar um status por vez."
+                );
                 return false;
+              }
 
               usuario.status = status;
 
