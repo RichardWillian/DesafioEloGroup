@@ -34,8 +34,7 @@ export default {
         // });
         return bdUsuarios;
     },
-    atualizarUsuario: (usuario) => {
-        console.log(usuario);
+    atualizarUsuario: () => {
         // http.put('atualizarUsuario', usuario).then(response => {
         //     //Atualizar usuário
         // });

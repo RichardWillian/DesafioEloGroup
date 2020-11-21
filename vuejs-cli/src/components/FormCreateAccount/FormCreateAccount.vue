@@ -2,27 +2,7 @@
   <div class="container" id="formulario">
     <form v-on:submit.prevent="salvarUsuario">
       <LogoEloGroup />
-      <div class="form-group col-lg-12">
-        <label for="usuario" id="labelUsuario">Usuário *</label>
-        <input
-          class="form-control"
-          id="usuario"
-          aria-describedby="usuarioHelp"
-          v-on:keyup="
-            (event) =>
-              validateFieldEmpty(
-                event.target,
-                '#mensagemErroUsuario',
-                '#labelUsuario'
-              )
-          "
-        />
-        <small
-          id="mensagemErroUsuario"
-          class="form-text text-danger"
-          hidden
-        ></small>
-      </div>
+      <InputUsuario />
       <InputPassword />
       <InputConfirmPassword />
       <div class="form-group col-lg-12">
@@ -37,14 +17,16 @@ import $ from "jquery";
 import Utils from "../../utils/Utils";
 import LogoEloGroup from "../LogoEloGroup";
 import UsuarioService from "../../services/usuarios";
+import InputUsuario from "./components/InputUsuario";
 import InputPassword from "./components/InputPassword";
-import TableLeads from '../PainelLeads/components/TableLeads';
+import TableLeads from "../PainelLeads/components/TableLeads";
 import InputConfirmPassword from "./components/InputConfirmPassword";
-import ModalFormularioCriacaoLead from './ModalFormularioCriacaoLead';
+import ModalFormularioCriacaoLead from "./ModalFormularioCriacaoLead";
 
 export default {
   components: {
     LogoEloGroup,
+    InputUsuario,
     InputPassword,
     InputConfirmPassword,
   },
@@ -69,7 +51,7 @@ export default {
           id: Math.floor(Math.random() * 100) + 4,
           nome: $usuario.val(),
           password: $password.val(),
-          status: 0
+          status: 0,
         };
 
         UsuarioService.salvarUsuario(usuario);
@@ -83,31 +65,19 @@ export default {
       var parteMensagem = "É preciso preencher o campo";
 
       if (usarioIsEmpty)
-        Utils.methods.addDetailsError(
-          parteMensagem + " 'usuário'",
-          $usuario,
-          $("#labelUsuario"),
-          $("#mensagemErroUsuario")
-        );
+        InputUsuario.methods.adicionarDetalhesErro(parteMensagem + " 'usuário'");
+
       if (passwordIsEmpty)
-        Utils.methods.addDetailsError(
-          parteMensagem + " 'password'",
-          $password,
-          $("#labelPassword"),
-          $("#mensagemErroPassword")
-        );
+        InputPassword.methods.adicionarDetalhesErro(parteMensagem + " 'password'");
+
       if (confirmarPasswordIsEmpty)
-        Utils.methods.addDetailsError(
-          parteMensagem + "'confirmar password'",
-          $confirmarPassword,
-          $("#labelConfirmarPassword"),
-          $("#mensagemErroConfirmarPassword")
-        );
+        InputConfirmPassword.methods.adicionarDetalhesErro(parteMensagem + "'confirmar password'");
     },
     limparCampos() {
       $("#usuario").val("");
-      $("#password").val("");
-      $("#confirmarPassword").val("");
+      InputUsuario.methods.limparCampos();
+      InputPassword.methods.limparCampos();
+      InputConfirmPassword.methods.limparCampos();
     },
     validateFieldEmpty: Utils.methods.validateFieldEmpty,
   },

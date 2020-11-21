@@ -97,7 +97,9 @@ export default {
     },
     isPasswordValid: function(){
       return passwordIsValid;
-    }
+    },
+    removeDetailsSuccess: removeDetailsSuccess,
+    removeDetailsError: removeDetailsError,
   },
 };
 
