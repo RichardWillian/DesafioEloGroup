@@ -39,17 +39,25 @@ export default {
     FormularioCriacaoLead,
   },
   methods: {
-    fecharModal(){
+    fecharModal() {
       InputUsuario.methods.limparCampos();
       InputPassword.methods.limparCampos();
       InputConfirmPassword.methods.limparCampos();
-      window.$('#modalFormulario').modal("toggle");
-    }
+      window.$("#modalFormulario").modal("toggle");
+    },
+    abrirModal() {
+      InputUsuario.methods.limparCampos();
+      InputPassword.methods.limparCampos();
+      InputConfirmPassword.methods.limparCampos();
+    },
   },
   data() {
     return {
       mostrarModal: false,
     };
+  },
+  mounted() {
+    window.$("#modalFormulario").on("show.bs.modal", this.abrirModal);
   },
 };
 </script>
