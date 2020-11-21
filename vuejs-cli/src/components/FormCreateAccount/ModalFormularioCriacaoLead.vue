@@ -1,27 +1,49 @@
 <template>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Inserir Lead</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <FormularioCriacaoLead />
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Inserir Lead</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <FormularioCriacaoLead />
+        </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
-import FormularioCriacaoLead from './FormCreateAccount'
+import FormularioCriacaoLead from "./FormCreateAccount";
 
 export default {
-    components: {
-        FormularioCriacaoLead
+  components: {
+    FormularioCriacaoLead,
+  },
+  methods: {
+    fecharModal(){
+      window.$('#exampleModal').modal("toggle");
     }
-}
+  },
+  data() {
+    return {
+      mostrarModal: false,
+    };
+  },
+};
 </script>

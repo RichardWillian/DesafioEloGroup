@@ -33,12 +33,14 @@
 </template>
 
 <script>
-import LogoEloGroup from "../LogoEloGroup";
-import InputPassword from "./components/InputPassword";
-import InputConfirmPassword from "./components/InputConfirmPassword";
-import Utils from "../../utils/Utils";
-import UsuarioService from "../../services/usuarios";
 import $ from "jquery";
+import Utils from "../../utils/Utils";
+import LogoEloGroup from "../LogoEloGroup";
+import UsuarioService from "../../services/usuarios";
+import InputPassword from "./components/InputPassword";
+import TableLeads from '../PainelLeads/components/TableLeads';
+import InputConfirmPassword from "./components/InputConfirmPassword";
+import ModalFormularioCriacaoLead from './ModalFormularioCriacaoLead';
 
 export default {
   components: {
@@ -48,9 +50,13 @@ export default {
   },
   methods: {
     salvarUsuario() {
-      var usarioIsEmpty = $("#usuario").val() == "";
-      var passwordIsEmpty = $("#password").val() == "";
-      var confirmarPasswordIsEmpty = $("#confirmarPassword").val() == "";
+      var $usuario = $("#usuario");
+      var $password = $("#password");
+      var $confirmarPassword = $("#confirmarPassword");
+
+      var usarioIsEmpty = $usuario.val() == "";
+      var passwordIsEmpty = $password.val() == "";
+      var confirmarPasswordIsEmpty = $confirmarPassword.val() == "";
 
       var formValido =
         !usarioIsEmpty &&
@@ -60,11 +66,17 @@ export default {
 
       if (formValido) {
         var usuario = {
-          nome: $("#usuario").val(),
-          password: $("#password").val(),
+          id: Math.floor(Math.random() * 100) + 4,
+          nome: $usuario.val(),
+          password: $password.val(),
+          status: 0
         };
 
         UsuarioService.salvarUsuario(usuario);
+        ModalFormularioCriacaoLead.methods.fecharModal();
+        TableLeads.methods.carregarTabela();
+
+        this.limparCampos();
         return;
       }
 
@@ -73,24 +85,29 @@ export default {
       if (usarioIsEmpty)
         Utils.methods.addDetailsError(
           parteMensagem + " 'usuário'",
-          $("#usuario"),
+          $usuario,
           $("#labelUsuario"),
           $("#mensagemErroUsuario")
         );
       if (passwordIsEmpty)
         Utils.methods.addDetailsError(
           parteMensagem + " 'password'",
-          $("#password"),
+          $password,
           $("#labelPassword"),
           $("#mensagemErroPassword")
         );
       if (confirmarPasswordIsEmpty)
         Utils.methods.addDetailsError(
           parteMensagem + "'confirmar password'",
-          $("#confirmarPassword"),
+          $confirmarPassword,
           $("#labelConfirmarPassword"),
           $("#mensagemErroConfirmarPassword")
         );
+    },
+    limparCampos() {
+      $("#usuario").val("");
+      $("#password").val("");
+      $("#confirmarPassword").val("");
     },
     validateFieldEmpty: Utils.methods.validateFieldEmpty,
   },
