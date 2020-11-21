@@ -9,10 +9,3 @@
     Novo Lead (+)
   </button>
 </template>
-
-<style scoped>
-#btnAdicionarLead {
-  margin-left: -16%;
-  width: 105%;
-}
-</style>

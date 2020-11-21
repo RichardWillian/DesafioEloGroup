@@ -1,27 +1,34 @@
 <template>
-  <div>
-    <section class="container-fluid row justify-content-md-center">
-      <div class="row justify-content-center">
+  <div class="justify-content-center border border-dark offset-md-2 col-md-8">
+    <div class="row justify-content-md-center">
+      <div>
         <div class="col table-responsive">
-          <div class="mt-2 col-md-5">
-            <BotaoAdicionarLead />
+          <div class="col-xs-12">
+            <Alert />
           </div>
-          <div class="mt-2 row">
+          <div class="row mt-2">
+            <div class="col-xs-1">
+              <BotaoAdicionarLead />
+            </div>
+          </div>
+          <div class="row mt-3 mb-5">
             <TableLeads />
           </div>
           <ModalFormularioCriacaoLead />
         </div>
       </div>
-    </section>
+    </div>
   </div>
 </template>
 <script>
+import Alert from "../Alert";
 import TableLeads from "./components/TableLeads";
 import BotaoAdicionarLead from "./components/BotaoAdicionarLead";
 import ModalFormularioCriacaoLead from "../FormCreateAccount/ModalFormularioCriacaoLead";
 
 export default {
   components: {
+    Alert,
     TableLeads,
     BotaoAdicionarLead,
     ModalFormularioCriacaoLead,
@@ -33,6 +40,7 @@ export default {
 body {
   font-family: Arial;
 }
+
 h2 {
   margin: 5px;
 }

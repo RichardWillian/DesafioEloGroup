@@ -1,5 +1,5 @@
 <template>
-  <table class="table table-hover table-bordered text-center" id="tabellaSos">
+  <table class="nopadding table table-hover table-bordered text-center table-responsive" id="tabelaLeads">
     <thead class="thead-dark">
       <tr>
         <th value="1">Cliente em Potencial</th>
@@ -55,10 +55,11 @@ export default {
         $(".sortable")
           .sortable({
             cursor: "move",
+            scroll: false,
             cancel: "td:not(.card)",
             update: function (event, ui) {
               if (ui.originalPosition.left > ui.position.left) {
-                Alert.methods.exibir("Não é permitido retornar um status.")
+                Alert.methods.exibir("Não é permitido retornar um status.");
                 return false;
               }
 
@@ -92,3 +93,37 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+html {
+  overflow: scroll;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.table {
+  max-height: 500px;
+  max-width: 600px;
+}
+thead, tbody tr {
+  display: table;
+  width: 100%;
+  max-width: 600px;
+  table-layout: fixed;
+}
+
+tbody {
+  display: block;
+  overflow-y: auto;
+  table-layout: fixed;
+  max-height: 420px;
+  max-width: 600px;
+}
+
+.nopadding{
+  margin: 0px!important;
+  padding: 0px!important;
+}
+</style>

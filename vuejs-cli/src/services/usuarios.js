@@ -18,6 +18,48 @@ var bdUsuarios = [{
         password: "El@Gr0oup3",
         status: 0
     },
+    {
+        id: 4,
+        nome: 'Org. Internacionais',
+        password: "El@Gr0oup1",
+        status: 0
+    },
+    {
+        id: 5,
+        nome: 'Ind. Farm. LTDA',
+        password: "El@Gr0oup2",
+        status: 1
+    },
+    {
+        id: 6,
+        nome: 'Musc. Sound Live Cmp',
+        password: "El@Gr0oup3",
+        status: 0
+    },
+    {
+        id: 7,
+        nome: 'Org. Internacionais',
+        password: "El@Gr0oup1",
+        status: 0
+    },
+    {
+        id: 8,
+        nome: 'Ind. Farm. LTDA',
+        password: "El@Gr0oup2",
+        status: 1
+    },
+    {
+        id: 9,
+        nome: 'Musc. Sound Live Cmp',
+        password: "El@Gr0oup3",
+        status: 0
+    },
+    {
+        id: 10,
+        nome: 'Musc. Sound Live Cmp',
+        password: "El@Gr0oup3",
+        status: 0
+    },
 ]
 
 export default {
