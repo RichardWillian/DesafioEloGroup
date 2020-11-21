@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     adicionarNovoLead() {
-      this.leads = carregarTabela();
+      this.leads = this.carregarTabela();
     },
     carregarTabela() {
       var $this = this;
@@ -56,6 +56,7 @@ export default {
             cursor: "move",
             cancel: "td:not(.card)",
             update: function (event, ui) {
+
               if (ui.originalPosition.left > ui.position.left) return false;
 
               var $tdMovida = $(ui.item);
@@ -66,6 +67,9 @@ export default {
                 return lead.id == idLead;
               });
               var usuario = arrayLeads.shift();
+              if(status - usuario.status != 1)
+                return false;
+
               usuario.status = status;
 
               UsuarioService.atualizarUsuario(usuario);
@@ -79,30 +83,4 @@ export default {
     this.carregarTabela();
   },
 };
-
-function carregarTabela() {
-  $(function () {
-    $(".sortable")
-      .sortable({
-        cursor: "move",
-        cancel: "td:not(.card)",
-        update: function (event, ui) {
-          //   var $tdMovida = $(ui.item);
-          //   var idLead = $tdMovida.attr("id").split("_")[1];
-          //   var status = $tdMovida.index();
-
-          //   var arrayLeads = $this.leads.filter(function (lead) {
-          //     return lead.id == idLead;
-          //   });
-          //   var usuario = arrayLeads.shift();
-          //   usuario.status = status;
-
-          //   UsuarioService.atualizarUsuario(usuario);
-
-          return ui.originalPosition.left < ui.position.left;
-        },
-      })
-      .disableSelection();
-  });
-}
 </script>
