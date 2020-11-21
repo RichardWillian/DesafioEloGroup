@@ -1,16 +1,16 @@
 <template>
   <div
     class="modal fade"
-    id="exampleModal"
+    id="modalFormulario"
     tabindex="-1"
     role="dialog"
-    aria-labelledby="exampleModalLabel"
+    aria-labelledby="modalFormularioLabel"
     aria-hidden="true"
   >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Inserir Lead</h5>
+          <h5 class="modal-title" id="modalFormularioLabel">Inserir Lead</h5>
           <button
             type="button"
             class="close"
@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     fecharModal(){
-      window.$('#exampleModal').modal("toggle");
+      window.$('#modalFormulario').modal("toggle");
     }
   },
   data() {

@@ -14,9 +14,9 @@
 
 <script>
 import $ from "jquery";
-import Utils from "../../utils/Utils";
+import Utils from "@/utils/Utils";
 import LogoEloGroup from "../LogoEloGroup";
-import UsuarioService from "../../services/usuarios";
+import UsuarioService from "@/services/usuarios";
 import InputUsuario from "./components/InputUsuario";
 import InputPassword from "./components/InputPassword";
 import TableLeads from "../PainelLeads/components/TableLeads";
@@ -47,12 +47,7 @@ export default {
         Utils.methods.isPasswordValid();
 
       if (formValido) {
-        var usuario = {
-          id: Math.floor(Math.random() * 100) + 4,
-          nome: $usuario.val(),
-          password: $password.val(),
-          status: 0,
-        };
+        var usuario = this.montarUsuario($usuario, $password);
 
         UsuarioService.salvarUsuario(usuario);
         ModalFormularioCriacaoLead.methods.fecharModal();
@@ -65,19 +60,34 @@ export default {
       var parteMensagem = "É preciso preencher o campo";
 
       if (usarioIsEmpty)
-        InputUsuario.methods.adicionarDetalhesErro(parteMensagem + " 'usuário'");
+        InputUsuario.methods.adicionarDetalhesErro(
+          parteMensagem + " 'usuário'"
+        );
 
       if (passwordIsEmpty)
-        InputPassword.methods.adicionarDetalhesErro(parteMensagem + " 'password'");
+        InputPassword.methods.adicionarDetalhesErro(
+          parteMensagem + " 'password'"
+        );
 
       if (confirmarPasswordIsEmpty)
-        InputConfirmPassword.methods.adicionarDetalhesErro(parteMensagem + "'confirmar password'");
+        InputConfirmPassword.methods.adicionarDetalhesErro(
+          parteMensagem + "'confirmar password'"
+        );
     },
     limparCampos() {
       $("#usuario").val("");
       InputUsuario.methods.limparCampos();
       InputPassword.methods.limparCampos();
       InputConfirmPassword.methods.limparCampos();
+    },
+    montarUsuario($usuario, $password) {
+      var usuario = {
+        id: Math.floor(Math.random() * 100) + 4,
+        nome: $usuario.val(),
+        password: $password.val(),
+        status: 0,
+      };
+      return usuario;
     },
     validateFieldEmpty: Utils.methods.validateFieldEmpty,
   },

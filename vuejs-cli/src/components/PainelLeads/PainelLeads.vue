@@ -3,15 +3,8 @@
     <section class="container-fluid row justify-content-md-center">
       <div class="row justify-content-center">
         <div class="col table-responsive">
-          <div class="mt-2 row">
-            <button
-              type="button"
-              class="btn btn-primary"
-              data-toggle="modal"
-              data-target="#exampleModal"
-            >
-              Novo Lead (+)
-            </button>
+          <div class="mt-2 col-md-5">
+            <BotaoAdicionarLead />
           </div>
           <div class="mt-2 row">
             <TableLeads />
@@ -23,16 +16,17 @@
   </div>
 </template>
 <script>
-
-import ModalFormularioCriacaoLead from "../FormCreateAccount/ModalFormularioCriacaoLead";
 import TableLeads from "./components/TableLeads";
+import BotaoAdicionarLead from "./components/BotaoAdicionarLead";
+import ModalFormularioCriacaoLead from "../FormCreateAccount/ModalFormularioCriacaoLead";
 
 export default {
   components: {
     TableLeads,
+    BotaoAdicionarLead,
     ModalFormularioCriacaoLead,
   },
-}
+};
 </script>
 
 <style scoped>
