@@ -52,7 +52,6 @@ export default {
       var emailIsEmpty = $email.val() == "";
       var telefoneIsEmpty = $telefone.val() == "";
 
-      console.log(TableOportunidades.methods.recuperarCheckboxs().length);
       var checkboxIsEmpty =
         TableOportunidades.methods.recuperarCheckboxs().length == 0;
 
@@ -90,7 +89,7 @@ export default {
 
       if (checkboxIsEmpty)
         TableOportunidades.methods.adicionarDetalhesErro(
-          parteMensagem + " 'oportunidades'"
+          "É preciso selecionar pelo menos uma 'oportunidade'"
         );
     },
     limparCampos() {

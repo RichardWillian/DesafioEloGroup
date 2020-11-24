@@ -29,6 +29,7 @@
     <small
       id="mensagemErroOportunidades"
       class="form-text text-danger"
+      style="padding-bottom: 2%;"
       hidden
     ></small>
   </div>
