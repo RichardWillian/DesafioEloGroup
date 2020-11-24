@@ -1,14 +1,18 @@
 <template>
   <div class="container" id="formulario">
-    <form v-on:submit.prevent="validarLoginUsuario">
-      <LogoEloGroup />
-      <InputUsuario />
-      <InputPassword />
-      <InputConfirmPassword />
-      <div class="form-group col-lg-12">
-        <button class="btn btn-outline-dark btn-lg btn-block">Registrar</button>
-      </div>
-    </form>
+    <div class="col-md-10 offset-md-1">
+      <form v-on:submit.prevent="validarLoginUsuario">
+        <LogoEloGroup />
+        <InputUsuario />
+        <InputPassword />
+        <InputConfirmPassword />
+        <div class="form-group col-lg-12">
+          <button class="btn btn-outline-dark btn-lg btn-block">
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -20,8 +24,8 @@ import UsuarioService from "@/services/usuarios";
 import InputUsuario from "./components/InputUsuario";
 import InputPassword from "./components/InputPassword";
 import TableLeads from "../PainelLeads/components/TableLeads";
+import router from "../../router";
 import InputConfirmPassword from "./components/InputConfirmPassword";
-import ModalFormularioLogin from "./ModalFormularioLogin";
 
 export default {
   components: {
@@ -50,10 +54,11 @@ export default {
         var usuario = this.montarUsuario($usuario, $password);
 
         UsuarioService.validarLoginUsuario(usuario);
-        ModalFormularioLogin.methods.fecharModal();
         TableLeads.methods.carregarTabela();
 
         this.limparCampos();
+
+        router.push({ name: "painelLeads"})
         return;
       }
 

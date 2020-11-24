@@ -1,7 +1,7 @@
 import Vue from "vue"
 import Router from "vue-router"
 import Home from "../src/views/Home"
-import FormCreateLead from '../src/components/CreateNewLead/FormCreateLead';
+import PainelLead from '../src/components/PainelLeads/PainelLeads';
 
 
 Vue.use(Router)
@@ -11,9 +11,9 @@ const routes = [{
     path: "/",
     component: Home
 }, {
-    name: "formCreateLead",
-    path: "/FormCreateLead",
-    component: FormCreateLead
+    name: "painelLeads",
+    path: "/PainelLeads",
+    component: PainelLead
 }]
 
 const router = new Router({ routes });

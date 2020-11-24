@@ -3,7 +3,6 @@
     <button
       class="btn"
       style="background-color: #14222b; color: white"
-      href="#"
     >
       ELO <strong>GROUP</strong>
     </button>

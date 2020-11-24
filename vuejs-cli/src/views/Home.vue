@@ -1,8 +1,8 @@
 <template>
   <div>
     <NavBar />
-    <div class="mb-2 mt-2">
-      <PainelLeads />
+    <div class="mb-5 mt-5">
+      <FormCreateAccount />
     </div>
     <Footer />
   </div>
@@ -11,14 +11,14 @@
 <script>
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/FooterBar";
-import PainelLeads from "@/components/PainelLeads/PainelLeads";
+import FormCreateAccount from "@/components/FormCreateAccount/FormCreateAccount";
 
 export default {
   name: "App",
   components: {
     NavBar,
     Footer,
-    PainelLeads,
+    FormCreateAccount,
   },
 };
 </script>
