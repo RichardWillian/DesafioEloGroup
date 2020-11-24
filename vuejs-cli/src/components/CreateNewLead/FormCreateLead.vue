@@ -16,55 +16,29 @@
         <div class="col-md-6">
           <p>Oportunidades *</p>
           <table
-            class="table table-hover table-bordered text-center table-responsive-xl"
+            class="table table-hover table-bordered text-center table-responsive-xl" id="tabela-oportunidades"
           >
             <thead class="thead-dark">
               <tr>
                 <th scope="col">
-                  <input
-                    type="checkbox"
-                    aria-label="Checkbox for following text input"
-                  />
+                  <input type="checkbox" v-model="selecionarCheckBoxTodos">
                 </th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr
+                v-for="oportunidade in oportunidades"
+                v-bind:key="oportunidade.id"
+              >
                 <td>
                   <input
                     type="checkbox"
-                    aria-label="Checkbox for following text input"
+                    v-model="selected"
+                    :value="oportunidade.id"
                   />
                 </td>
-                <td>RPM</td>
-              </tr>
-              <tr>
-                <td>
-                  <input
-                    type="checkbox"
-                    aria-label="Checkbox for following text input"
-                  />
-                </td>
-                <td>Produto Digital</td>
-              </tr>
-              <tr>
-                <td>
-                  <input
-                    type="checkbox"
-                    aria-label="Checkbox for following text input"
-                  />
-                </td>
-                <td>Analytics</td>
-              </tr>
-              <tr>
-                <td>
-                  <input
-                    type="checkbox"
-                    aria-label="Checkbox for following text input"
-                  />
-                </td>
-                <td>BPM</td>
+                <td>{{ oportunidade.nome }}</td>
               </tr>
             </tbody>
           </table>
@@ -84,8 +58,34 @@ import LogoEloGroup from "../LogoEloGroup";
 import InputNome from "./components/InputNome";
 import InputEmail from "./components/InputEmail";
 import InputTelefone from "./components/InputTelefone";
+import ModalFormularioLead from "./ModalFormularioLead";
+import LeadService from '../../services/leads';
+import TableLeads from '../PainelLeads/components/TableLeads';
 
 export default {
+  data() {
+    return {
+      oportunidades: [
+        {
+          id: "1",
+          nome: "RPA",
+        },
+        {
+          id: "2",
+          nome: "Produto Digital",
+        },
+        {
+          id: "3",
+          nome: "Analytics",
+        },
+        {
+          id: "4",
+          nome: "BPM",
+        },
+      ],
+      selected: [],
+    };
+  },
   components: {
     InputNome,
     InputEmail,
@@ -101,15 +101,17 @@ export default {
       var nomeIsEmpty = $nome.val() == "";
       var emailIsEmpty = $email.val() == "";
       var telefoneIsEmpty = $telefone.val() == "";
+      var checkboxIsEmpty = this.selected.length == 0;
 
-      var formValido = !nomeIsEmpty && !emailIsEmpty && !telefoneIsEmpty;
+      var formValido = !nomeIsEmpty && !emailIsEmpty && !telefoneIsEmpty && !checkboxIsEmpty;
 
       if (formValido) {
-        // var nome = this.montarUsuario($nome, $email);
+          console.log("Formulário Válido 2");
+        var lead = this.montarLead($nome, $email, $telefone, this.selected);
 
-        // UsuarioService.salvarUsuario(nome);
-        // ModalFormularioCriacaoLead.methods.fecharModal();
-        // TableLeads.methods.carregarTabela();
+        LeadService.salvarLead(lead);
+        ModalFormularioLead.methods.fecharModal();
+        TableLeads.methods.carregarTabela();
 
         this.limparCampos();
         return;
@@ -132,17 +134,51 @@ export default {
       InputNome.methods.limparCampos();
       InputEmail.methods.limparCampos();
       InputTelefone.methods.limparCampos();
+      this.selected = [];
     },
-    montarUsuario($nome, $email) {
-      var nome = {
+    montarLead($nome, $email, $telefone, oportunidadesEscolhidas) {
+      var lead = {
         id: Math.floor(Math.random() * 100) + 4,
         nome: $nome.val(),
         email: $email.val(),
+        telefone: $telefone,
+        oportunidades: oportunidadesEscolhidas,
         status: 0,
       };
-      return nome;
+      return lead;
     },
     validateFieldEmpty: Utils.methods.validateFieldEmpty,
+  },
+  computed: {
+    selecionarCheckBoxTodos: {
+      get() {
+        if (this.oportunidades && this.oportunidades.length > 0) {
+          let allChecked = true;
+
+          for (const oportunidade of this.oportunidades) {
+            if (!this.selected.includes(oportunidade.id)) {
+              allChecked = false;
+            }
+            if (!allChecked) break;
+          }
+
+          return allChecked;
+        }
+
+        return false;
+      },
+      set(value) {
+        const checked = [];
+
+        if (value) {
+          this.oportunidades.forEach((oportunidade) => {
+            checked.push(oportunidade.id);
+          });
+        }
+
+        this.selected = checked;
+      },
+    },
   },
 };
 </script>

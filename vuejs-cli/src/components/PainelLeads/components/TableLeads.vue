@@ -41,7 +41,7 @@
 import $ from "jquery";
 require("jquery-ui-bundle");
 import Alert from "../../Alert";
-import UsuarioService from "@/services/usuarios";
+import LeadService from "@/services/leads";
 
 export default {
   data() {
@@ -53,7 +53,7 @@ export default {
     },
     carregarTabela() {
       var $this = this;
-      $this.leads = UsuarioService.recuperarUsuarios();
+      $this.leads = LeadService.recuperarLeads();
       $(function () {
         $(".sortable")
           .sortable({
@@ -83,7 +83,7 @@ export default {
 
               usuario.status = status;
 
-              UsuarioService.atualizarUsuario(usuario);
+              LeadService.atualizarLead(usuario);
             },
           })
           .disableSelection();

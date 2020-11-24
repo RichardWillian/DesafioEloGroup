@@ -1,6 +1,6 @@
 <template>
   <div class="container" id="formulario">
-    <form v-on:submit.prevent="salvarUsuario">
+    <form v-on:submit.prevent="validarLoginUsuario">
       <LogoEloGroup />
       <InputUsuario />
       <InputPassword />
@@ -31,7 +31,7 @@ export default {
     InputConfirmPassword,
   },
   methods: {
-    salvarUsuario() {
+    validarLoginUsuario() {
       var $usuario = $("#usuario");
       var $password = $("#password");
       var $confirmarPassword = $("#confirmarPassword");
@@ -49,7 +49,7 @@ export default {
       if (formValido) {
         var usuario = this.montarUsuario($usuario, $password);
 
-        UsuarioService.salvarUsuario(usuario);
+        UsuarioService.validarLoginUsuario(usuario);
         ModalFormularioLogin.methods.fecharModal();
         TableLeads.methods.carregarTabela();
 
