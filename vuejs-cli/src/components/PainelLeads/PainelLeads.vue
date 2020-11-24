@@ -20,7 +20,7 @@
           <div class="row mt-3 mb-5">
             <TableLeads />
           </div>
-          <ModalFormularioCriacaoLead />
+          <ModalFormularioLead />
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
 import Alert from "../Alert";
 import TableLeads from "./components/TableLeads";
 import BotaoAdicionarLead from "./components/BotaoAdicionarLead";
-import ModalFormularioCriacaoLead from "../FormCreateAccount/ModalFormularioCriacaoLead";
+import ModalFormularioLead from "../CreateNewLead/ModalFormularioLead";
 import LogoEloGroup from '../LogoEloGroup.vue';
 
 export default {
@@ -38,7 +38,7 @@ export default {
     Alert,
     TableLeads,
     BotaoAdicionarLead,
-    ModalFormularioCriacaoLead,
+    ModalFormularioLead,
     LogoEloGroup,
   },
 };

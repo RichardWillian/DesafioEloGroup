@@ -1,5 +1,8 @@
 <template>
-  <table class="nopadding table table-hover table-bordered text-center table-responsive" id="tabelaLeads">
+  <table
+    class="nopadding table table-hover table-bordered text-center table-responsive"
+    id="tabelaLeads"
+  >
     <thead class="thead-dark">
       <tr>
         <th value="1">Cliente em Potencial</th>
@@ -106,7 +109,8 @@ html {
   max-height: 500px;
   max-width: 600px;
 }
-thead, tbody tr {
+thead,
+tbody tr {
   display: table;
   width: 100%;
   max-width: 600px;
@@ -121,8 +125,8 @@ tbody {
   max-width: 600px;
 }
 
-.nopadding{
-  margin: 0px!important;
-  padding: 0px!important;
+.nopadding {
+  margin: 0px !important;
+  padding: 0px !important;
 }
 </style>

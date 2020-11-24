@@ -21,7 +21,7 @@ import InputUsuario from "./components/InputUsuario";
 import InputPassword from "./components/InputPassword";
 import TableLeads from "../PainelLeads/components/TableLeads";
 import InputConfirmPassword from "./components/InputConfirmPassword";
-import ModalFormularioCriacaoLead from "./ModalFormularioCriacaoLead";
+import ModalFormularioLogin from "./ModalFormularioLogin";
 
 export default {
   components: {
@@ -50,7 +50,7 @@ export default {
         var usuario = this.montarUsuario($usuario, $password);
 
         UsuarioService.salvarUsuario(usuario);
-        ModalFormularioCriacaoLead.methods.fecharModal();
+        ModalFormularioLogin.methods.fecharModal();
         TableLeads.methods.carregarTabela();
 
         this.limparCampos();

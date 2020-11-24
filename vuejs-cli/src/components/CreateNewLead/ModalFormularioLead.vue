@@ -1,16 +1,16 @@
 <template>
   <div
     class="modal fade"
-    id="modalFormulario"
+    id="modalFormularioLead"
     tabindex="-1"
     role="dialog"
     aria-labelledby="modalFormularioLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title" id="modalFormularioLabel">Inserir Lead</h1>
+          <h1 class="modal-title" id="modalFormularioLabel">Novo Lead</h1>
           <button
             type="button"
             class="close"
@@ -29,10 +29,10 @@
 </template>
 
 <script>
-import InputUsuario from "./components/InputUsuario";
-import InputPassword from "./components/InputPassword";
-import FormularioCriacaoLead from "./FormCreateAccount";
-import InputConfirmPassword from "./components/InputConfirmPassword";
+import InputNome from "./components/InputNome";
+import InputEmail from "./components/InputEmail";
+import InputTelefone from "./components/InputTelefone";
+import FormularioCriacaoLead from "./FormCreateLead";
 
 export default {
   components: {
@@ -40,15 +40,15 @@ export default {
   },
   methods: {
     fecharModal() {
-      InputUsuario.methods.limparCampos();
-      InputPassword.methods.limparCampos();
-      InputConfirmPassword.methods.limparCampos();
-      window.$("#modalFormulario").modal("toggle");
+      InputNome.methods.limparCampos();
+      InputEmail.methods.limparCampos();
+      InputTelefone.methods.limparCampos();
+      window.$("#modalFormularioLead").modal("toggle");
     },
     abrirModal() {
-      InputUsuario.methods.limparCampos();
-      InputPassword.methods.limparCampos();
-      InputConfirmPassword.methods.limparCampos();
+      InputNome.methods.limparCampos();
+      InputEmail.methods.limparCampos();
+      InputTelefone.methods.limparCampos();
     },
   },
   data() {
@@ -57,7 +57,7 @@ export default {
     };
   },
   mounted() {
-    window.$("#modalFormulario").on("show.bs.modal", this.abrirModal);
+    window.$("#modalFormularioLead").on("show.bs.modal", this.abrirModal);
   },
 };
 </script>
