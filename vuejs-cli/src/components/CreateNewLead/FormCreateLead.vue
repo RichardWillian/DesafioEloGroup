@@ -13,36 +13,7 @@
           <InputTelefone />
           <InputEmail />
         </div>
-        <div class="col-md-6">
-          <p>Oportunidades *</p>
-          <table
-            class="table table-hover table-bordered text-center table-responsive-xl" id="tabela-oportunidades"
-          >
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">
-                  <input type="checkbox" v-model="selecionarCheckBoxTodos">
-                </th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="oportunidade in oportunidades"
-                v-bind:key="oportunidade.id"
-              >
-                <td>
-                  <input
-                    type="checkbox"
-                    v-model="selected"
-                    :value="oportunidade.id"
-                  />
-                </td>
-                <td>{{ oportunidade.nome }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <TableOportunidades />
       </div>
       <div class="form-group col-md-12">
         <button class="btn btn-outline-dark btn-lg btn-block">Salvar</button>
@@ -59,38 +30,17 @@ import InputNome from "./components/InputNome";
 import InputEmail from "./components/InputEmail";
 import InputTelefone from "./components/InputTelefone";
 import ModalFormularioLead from "./ModalFormularioLead";
-import LeadService from '../../services/leads';
-import TableLeads from '../PainelLeads/components/TableLeads';
+import LeadService from "../../services/leads";
+import TableLeads from "../PainelLeads/components/TableLeads";
+import TableOportunidades from "./components/TableOportunidades";
 
 export default {
-  data() {
-    return {
-      oportunidades: [
-        {
-          id: "1",
-          nome: "RPA",
-        },
-        {
-          id: "2",
-          nome: "Produto Digital",
-        },
-        {
-          id: "3",
-          nome: "Analytics",
-        },
-        {
-          id: "4",
-          nome: "BPM",
-        },
-      ],
-      selected: [],
-    };
-  },
   components: {
     InputNome,
     InputEmail,
     InputTelefone,
     LogoEloGroup,
+    TableOportunidades,
   },
   methods: {
     salvarLead() {
@@ -101,13 +51,21 @@ export default {
       var nomeIsEmpty = $nome.val() == "";
       var emailIsEmpty = $email.val() == "";
       var telefoneIsEmpty = $telefone.val() == "";
-      var checkboxIsEmpty = this.selected.length == 0;
 
-      var formValido = !nomeIsEmpty && !emailIsEmpty && !telefoneIsEmpty && !checkboxIsEmpty;
+      console.log(TableOportunidades.methods.recuperarCheckboxs().length);
+      var checkboxIsEmpty =
+        TableOportunidades.methods.recuperarCheckboxs().length == 0;
+
+      var formValido =
+        !nomeIsEmpty && !emailIsEmpty && !telefoneIsEmpty && !checkboxIsEmpty;
 
       if (formValido) {
-          console.log("Formulário Válido 2");
-        var lead = this.montarLead($nome, $email, $telefone, this.selected);
+        var lead = this.montarLead(
+          $nome,
+          $email,
+          $telefone,
+          TableOportunidades.selected
+        );
 
         LeadService.salvarLead(lead);
         ModalFormularioLead.methods.fecharModal();
@@ -129,12 +87,17 @@ export default {
         InputTelefone.methods.adicionarDetalhesErro(
           parteMensagem + " 'telefone'"
         );
+
+      if (checkboxIsEmpty)
+        TableOportunidades.methods.adicionarDetalhesErro(
+          parteMensagem + " 'oportunidades'"
+        );
     },
     limparCampos() {
       InputNome.methods.limparCampos();
       InputEmail.methods.limparCampos();
       InputTelefone.methods.limparCampos();
-      this.selected = [];
+      TableOportunidades.methods.limparCampos();
     },
     montarLead($nome, $email, $telefone, oportunidadesEscolhidas) {
       var lead = {
@@ -148,37 +111,6 @@ export default {
       return lead;
     },
     validateFieldEmpty: Utils.methods.validateFieldEmpty,
-  },
-  computed: {
-    selecionarCheckBoxTodos: {
-      get() {
-        if (this.oportunidades && this.oportunidades.length > 0) {
-          let allChecked = true;
-
-          for (const oportunidade of this.oportunidades) {
-            if (!this.selected.includes(oportunidade.id)) {
-              allChecked = false;
-            }
-            if (!allChecked) break;
-          }
-
-          return allChecked;
-        }
-
-        return false;
-      },
-      set(value) {
-        const checked = [];
-
-        if (value) {
-          this.oportunidades.forEach((oportunidade) => {
-            checked.push(oportunidade.id);
-          });
-        }
-
-        this.selected = checked;
-      },
-    },
   },
 };
 </script>

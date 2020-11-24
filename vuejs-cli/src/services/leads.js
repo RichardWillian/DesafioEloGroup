@@ -21,23 +21,24 @@ export default {
     // Como não há o backend, estou criando esse array
     // Temporário para simular as consultas na API
 
-    salvarLead: (usuario) => {
-        // http.post('salvarUsuario', usuario).then(response => {
-        //     //Salvar Usuários (Leads)
+    salvarLead: (lead) => {
+        // http.post('salvarLead', lead).then(response => {
+        //     //Salvar Lead (Lead)
         // });
 
-        bdLeads.push(usuario);
+        bdLeads.push(lead);
     },
     recuperarLeads: () => {
-        // http.get('recuperarUsuarios').then(response => {
-        //     //Retornar Usuários (Leads) da API
+        // http.get('recuperarLeads').then(response => {
+        //     //Retornar Leads (Leads) da API
         // });
 
         return bdLeads;
     },
-    atualizarLead: () => {
-        // http.put('atualizarUsuario', usuario).then(response => {
-        //     //Atualizar usuário
+    atualizarLead: (lead) => {
+        console.log(lead);
+        // http.put('atualizarLead', lead).then(response => {
+        //     //Atualizar lead
         // });
     }
 }
