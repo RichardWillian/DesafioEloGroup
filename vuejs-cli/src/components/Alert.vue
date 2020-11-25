@@ -1,6 +1,6 @@
 <template>
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong>Operação Inválida: </strong> {{ mensagemAlerta }}
+  <div class="alert alert-dismissible fade show" role="alert">
+    <strong>{{prefixo}}: </strong> {{ mensagemAlerta }}
     <button
       type="button"
       class="close"
@@ -14,20 +14,32 @@
 
 <script>
 import $ from "jquery";
+import Utils from "../utils/Utils";
+
 var vm = null;
 export default {
   data() {
     return {
       mensagemAlerta: "",
+      prefixo: "",
     };
   },
   methods: {
-    exibir: function (mensagem) {
+    exibir: function (prefixo, mensagem, classe) {
+      this.esconder();
+      vm.prefixo = prefixo;
       vm.mensagemAlerta = mensagem;
-      $(".alert").show();
+      var $alert = $(".alert");
+      Utils.methods.addClass($alert, classe);
+
+      $alert.show();
     },
     esconder() {
-      $(".alert").hide();
+      console.log("Escondeu");
+      var $alert = $(".alert");
+      Utils.methods.removeClass($alert, "alert-warning");
+      Utils.methods.removeClass($alert, "alert-success");
+      $alert.hide();
     },
   },
   mounted(){

@@ -24,6 +24,7 @@
 
 <script>
 import $ from "jquery";
+import Alert from "../Alert";
 import Utils from "@/utils/Utils";
 import LogoEloGroup from "../LogoEloGroup";
 import InputNome from "./components/InputNome";
@@ -69,6 +70,8 @@ export default {
         LeadService.salvarLead(lead);
         ModalFormularioLead.methods.fecharModal();
         TableLeads.methods.carregarTabela();
+
+        Alert.methods.exibir("Operação Realizada", "Novo Lead inserido com sucesso.", "alert-success");
 
         this.limparCampos();
         return;

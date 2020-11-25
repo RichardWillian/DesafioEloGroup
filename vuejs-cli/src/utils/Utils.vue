@@ -100,6 +100,8 @@ export default {
     },
     removeDetailsSuccess: removeDetailsSuccess,
     removeDetailsError: removeDetailsError,
+    addClass: addClass,
+    removeClass: removeClass
   },
 };
 

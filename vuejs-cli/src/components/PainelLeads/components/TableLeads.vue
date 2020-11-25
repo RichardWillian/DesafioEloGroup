@@ -61,7 +61,7 @@ export default {
             cancel: "td:not(.card)",
             update: function (event, ui) {
               if (ui.originalPosition.left > ui.position.left) {
-                Alert.methods.exibir("Não é permitido retornar um status.");
+                Alert.methods.exibir("Operação Inválida", "Não é permitido retornar um status.", "alert-warning");
                 return false;
               }
 
@@ -76,7 +76,7 @@ export default {
 
               if (status - usuario.status != 1) {
                 Alert.methods.exibir(
-                  "Só é permitido avançar um status por vez."
+                  "Operação Inválida", "Só é permitido avançar um status por vez.", "alert-warning"
                 );
                 return false;
               }
